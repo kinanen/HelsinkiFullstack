@@ -37,6 +37,7 @@ const Total = (props) => {
 
 const App = () => {
 
+  //tietorakenne jossa kurssin nimi, osien nimet ja harjoitusten määrät
   const course = {
     name: 'Half Stack application development',
     parts: [
@@ -54,6 +55,8 @@ const App = () => {
       }
     ]
   }
+
+  // Lasketaan Harjoitusten summa sum nimiseen muuttujaan
   let sum = 0 ;
   for(let i=0; i<course.parts.length; i++){
     sum = sum + course.parts[i].exercises
