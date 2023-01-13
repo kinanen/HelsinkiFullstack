@@ -28,9 +28,16 @@ const Content = (props) => {
 }
 
 const Total = (props) => {
+  let sum = 0;
+
+  // Lasketaan Harjoitusten summa sum nimiseen muuttujaan
+  for (let i = 0; i < props.parts.length; i++) {
+    sum = sum + props.parts[i].exercises
+  }
+
   return (
     <p>
-      Number of exercises {props.sum}
+      Number of exercises {sum}
     </p>
   )
 }
@@ -56,17 +63,13 @@ const App = () => {
     ]
   }
 
-  // Lasketaan Harjoitusten summa sum nimiseen muuttujaan
-  let sum = 0 ;
-  for(let i=0; i<course.parts.length; i++){
-    sum = sum + course.parts[i].exercises
-  }
+
 
   return (
     <div>
       <Header />
       <Content parts = {course.parts}/>
-      <Total sum= {sum} />
+      <Total parts= {course.parts} />
     </div>
   )
 }
