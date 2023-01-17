@@ -12,10 +12,40 @@ const Button = ({ text,action }) => {
   )
 }
 
-const Display = ({text, value}) =>{
+const DisplayVote = ({text, value}) =>{
   return(
     <div>
       {text} {value}
+    </div>
+  )
+}
+
+
+
+const DisplayStats = ({votes}) =>{
+  let sum =0 ;
+  for(let i=0; i<votes.length; i++){
+      sum = sum + votes[i];
+  }
+
+
+  let average;
+
+  let positive = votes[0] * 1;
+  let negative = votes[1] * -1;
+  average = positive + negative; 
+  average = average / sum;
+  average = (average * 100) + "%";
+
+
+  return(
+    <div>
+      <div> 
+        all {sum}
+      </div>
+      <div>
+        average {average}
+      </div>
     </div>
   )
 }
@@ -33,9 +63,12 @@ const App = () => {
       <Button text="neutral" action={[neutral, setNeutral]} />
       <Button text="bad" action={[bad, setBad]} />
       <h1>statistics</h1>
-      <Display text="good" value={good}/>
-      <Display text="neutral" value={neutral}/>
-      <Display text="bad" value={bad}/>
+
+      <DisplayVote text="good" value={good}/>
+      <DisplayVote text="neutral" value={neutral}/>
+      <DisplayVote text="bad" value={bad}/>
+
+      <DisplayStats votes={[good, bad, neutral]}/>
     </div>
   );
 }
