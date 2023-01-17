@@ -55,6 +55,7 @@ const BestAnecdote = ({allAnecdotes,votes}) => {
       <p>
       {allAnecdotes[i]}
       </p>
+      <p> has {votes[i]} votes </p>
     </div>
   )
 }
