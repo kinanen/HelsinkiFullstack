@@ -36,9 +36,13 @@ const Statistics = ({ votes }) => {
   }
   while (sum == 0) {
     return (
-      <div>
+      <tbody>
+        <tr>
+        <td>
         no feedback given
-      </div>
+        </td>
+        </tr>
+      </tbody>
     )
   }
 
@@ -86,8 +90,9 @@ const App = () => {
       <Button text="neutral" action={[neutral, setNeutral]} />
       <Button text="bad" action={[bad, setBad]} />
       <h1>statistics</h1>
+      <table>
       <Statistics votes={[good, bad, neutral]} />
-
+      </table>
     </div>
   );
 }
