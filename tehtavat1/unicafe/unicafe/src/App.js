@@ -27,16 +27,20 @@ const DisplayStats = ({votes}) =>{
   for(let i=0; i<votes.length; i++){
       sum = sum + votes[i];
   }
-
-
+  // Muuttuja johon tallennetaan keskiarvo
   let average;
 
+  // muuttujat jotka muuttavat annetut äänet, niitä vastaaviksi painotetuiksi arvoiksi
   let positive = votes[0] * 1;
   let negative = votes[1] * -1;
+
+  //lasketaan arvioiden keskiarvo
   average = positive + negative; 
   average = average / sum;
-  average = (average * 100) + "%";
 
+  let allVotes = votes[0] + votes[1] + votes[2];
+  //lasketaan positiivisten arvioiden osuus kaikista arvioista
+  let positivePrecentage = ((positive / allVotes) * 100) + "%";
 
   return(
     <div>
@@ -45,6 +49,9 @@ const DisplayStats = ({votes}) =>{
       </div>
       <div>
         average {average}
+      </div>
+      <div>
+        positive {positivePrecentage}
       </div>
     </div>
   )
