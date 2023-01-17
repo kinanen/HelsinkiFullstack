@@ -1,32 +1,47 @@
 import { useState } from "react";
 
 const vote = (action) => {
-    action[1](action[0]+1);
+  action[1](action[0] + 1);
 }
 
-const Button = ({ text,action }) => {
+const Button = ({ text, action }) => {
   return (
-    <button onClick={()=>vote(action)}>
+    <button onClick={() => vote(action)}>
       {text}
     </button>
   )
 }
 
-const DisplayVote = ({text, value}) =>{
-  return(
-    <div>
-      {text} {value}
-    </div>
+const StatisticLine = ({ text, value }) => {
+  return (
+
+    <tr>
+      <td>
+        {text}
+      </td>
+      <td>
+        {value}
+      </td>
+    </tr>
+
   )
 }
 
 
 
-const DisplayStats = ({votes}) =>{
-  let sum =0 ;
-  for(let i=0; i<votes.length; i++){
-      sum = sum + votes[i];
+const Statistics = ({ votes }) => {
+  let sum = 0;
+  for (let i = 0; i < votes.length; i++) {
+    sum = sum + votes[i];
   }
+  while (sum == 0) {
+    return (
+      <div>
+        no feedback given
+      </div>
+    )
+  }
+
   // Muuttuja johon tallennetaan keskiarvo
   let average;
 
@@ -35,25 +50,26 @@ const DisplayStats = ({votes}) =>{
   let negative = votes[1] * -1;
 
   //lasketaan arvioiden keskiarvo
-  average = positive + negative; 
+  average = positive + negative;
   average = average / sum;
 
-  let allVotes = votes[0] + votes[1] + votes[2];
   //lasketaan positiivisten arvioiden osuus kaikista arvioista
-  let positivePrecentage = ((positive / allVotes) * 100) + "%";
+  let positivePrecentage = ((positive / sum) * 100) + "%";
 
-  return(
-    <div>
-      <div> 
-        all {sum}
-      </div>
-      <div>
-        average {average}
-      </div>
-      <div>
-        positive {positivePrecentage}
-      </div>
-    </div>
+  return (
+
+      <tbody>
+        <StatisticLine text="good" value={votes[0]} />
+        <StatisticLine text="neutral" value={votes[2]} />
+        <StatisticLine text="bad" value={votes[1]} />
+
+        <StatisticLine text="all" value={sum} />
+        <StatisticLine text="average" value={average} />
+        <StatisticLine text="positive" value={positivePrecentage} />
+
+      </tbody>
+
+
   )
 }
 
@@ -66,16 +82,12 @@ const App = () => {
   return (
     <div className="App">
       <h1>give feedback</h1>
-      <Button text="good" action={[good, setGood]}  />
+      <Button text="good" action={[good, setGood]} />
       <Button text="neutral" action={[neutral, setNeutral]} />
       <Button text="bad" action={[bad, setBad]} />
       <h1>statistics</h1>
+      <Statistics votes={[good, bad, neutral]} />
 
-      <DisplayVote text="good" value={good}/>
-      <DisplayVote text="neutral" value={neutral}/>
-      <DisplayVote text="bad" value={bad}/>
-
-      <DisplayStats votes={[good, bad, neutral]}/>
     </div>
   );
 }
