@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant User
     participant Browser
@@ -13,3 +14,4 @@ sequenceDiagram
     WebServer ->> Database: Save input field text as new note
     Database ->> WebServer: Confirm save
     WebServer ->> Browser: Render updated notes page
+```
