@@ -1,45 +1,46 @@
-const Header = () => {
-    return (
-      <h1>
-        Minulla on hassu hattu
-      </h1>
-    )
-  }
-  
-  const Part = (props) => {
-    return (
-      <p>
-        {props.part} {props.exercises}
-      </p>
-    )
-  }
-  
-  const Content = (props) => {
-    return (
-      <div>
-  
-          <Part part = {props.parts[0].name} exercises = {props.parts[0].exercises}/>
-          <Part part = {props.parts[1].name} exercises = {props.parts[1].exercises}/>
-          <Part part = {props.parts[2].name} exercises = {props.parts[2].exercises}/>
-  
-  
-      </div>
-    )
-  }
-  
-  const Total = (props) => {
-    let sum = 0;
-  
-    // Lasketaan Harjoitusten summa sum nimiseen muuttujaan
-    for (let i = 0; i < props.parts.length; i++) {
-      sum = sum + props.parts[i].exercises
-    }
-  
-    return (
-      <p>
-        Number of exercises {sum}
-      </p>
-    )
-  }
+const Header = ({ name }) => {
+  return (
+    <h1>
+      {name}
+    </h1>
+  )
+}
 
-  export default Course
+
+const Part = ({ ptName, exercises }) => {
+  return (
+    <p>
+      {ptName} {exercises}
+    </p>
+  )
+}
+
+const Total = ({ parts }) => {
+  const totalExercises = parts.reduce((sum, part) => {
+    return sum + part.exercises;
+  }, 0);
+
+  return (
+    <p id="total">
+      <b>Number of exercises {totalExercises}</b>
+    </p>
+  )
+}
+
+const Course = ({ course }) => {
+  return (
+    <div>
+      <Header name={course.name} />
+      <div>
+        {course.parts.map(part =>
+          <Part key={part.id} ptName={part.name} exercises={part.exercises} />
+        )}
+      </div>
+      <div>
+        <Total parts={course.parts} />
+      </div>
+    </div>
+  )
+}
+
+export default Course
