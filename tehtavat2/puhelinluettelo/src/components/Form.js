@@ -26,6 +26,7 @@ const Form = ({contacts, setContacts}) => {
 
     return (
         <form onSubmit={addPerson}>
+            <h2>Add Person</h2>
             <div>
                 name : <input value={newEntry.name} onChange={handleChangeName}/>
             </div>
