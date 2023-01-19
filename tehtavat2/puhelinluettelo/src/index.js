@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 
 const persons = [
-  {name: "Arto Hellas"}
+  {name: "Arto Hellas",
+    number: "0400123123"}
 ];
 
 
