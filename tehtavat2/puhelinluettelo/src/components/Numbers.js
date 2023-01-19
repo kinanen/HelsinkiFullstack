@@ -4,7 +4,6 @@ const Numbers = ({contacts}) => {
         <ul>
             {contacts.map(contact => 
                 <li key={contact.name}>{contact.name} p. {contact.number}</li>
-
                 )}
         </ul>
     );
