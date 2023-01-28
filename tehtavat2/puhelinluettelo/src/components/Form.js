@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import axios from "axios";
 
 const Form = ({contacts, setContacts}) => {
     const [newEntry, setNewEntry] = useState({
@@ -15,7 +16,11 @@ const Form = ({contacts, setContacts}) => {
             alert(`${entryToAdd.name} already exsists in the Phonebook`);
         }
         else{
-            setContacts([...contacts, entryToAdd]);
+            axios
+                .post('http://localhost:3001/persons', entryToAdd)
+                .then(response => setContacts([...contacts, response.data]));
+
+            //setContacts([...contacts, entryToAdd]);
             setNewEntry({name: '', number:''});
         }
         console.log(contacts)

@@ -16,11 +16,10 @@ const App = () => {
       .get('http://localhost:3001/persons')
       .then(response => setContacts(response.data));
   }
+ 
   useEffect(hook, []);
 
-
   console.log("app", contacts);
-
 
   return (
     <div>
