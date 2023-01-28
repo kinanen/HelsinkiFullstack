@@ -20,7 +20,7 @@ const Form = ({contacts, setContacts}) => {
         }
         console.log(contacts)
     }
-    let entry = {name:"", number:""};
+    //let entry = {name:"", number:""};
     const handleChangeName = (event) => setNewEntry({...newEntry, name: event.target.value});
     const handleChangeNumber = (event) => setNewEntry({...newEntry, number: event.target.value});
 
