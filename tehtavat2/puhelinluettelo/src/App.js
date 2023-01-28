@@ -3,7 +3,8 @@ import {useState, useEffect} from 'react';
 import Numbers from './components/Numbers';
 import Form from './components/Form';
 import Search from './components/Search';
-import axios from 'axios';
+import Persons from './services/Persons';
+
 
 
 const App = () => {
@@ -12,14 +13,10 @@ const App = () => {
   const [visible, setVisible] = useState(contacts);
   
   const hook = () => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => setContacts(response.data));
+    Persons.getAll().then(data => setContacts(data));
   }
  
   useEffect(hook, []);
-
-  console.log("app", contacts);
 
   return (
     <div>
