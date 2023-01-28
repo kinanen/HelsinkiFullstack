@@ -4,23 +4,27 @@ import Numbers from './components/Numbers';
 import Form from './components/Form';
 import Search from './components/Search';
 import Persons from './services/Persons';
+import  Message from './components/Message';
 
 
 
 const App = () => {
   
   const [contacts, setContacts] = useState([]);
-  const [visible, setVisible] = useState(contacts);
+  const [visible, setVisible] = useState([]);
   
   const hook = () => {
     Persons.getAll().then(data => setContacts(data));
   }
  
+  let message;
+  
   useEffect(hook, []);
 
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h1>Phonebook</h1>
+      <Message message={message}/>
       <Search contacts={contacts} visible={visible} setVisible={setVisible}/>
       <Form contacts={contacts} setContacts={setContacts}/>
       <h2>Numbers </h2>

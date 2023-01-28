@@ -21,9 +21,19 @@
       "id": 4
     },
     {
+      "name": "Arto Mellas",
+      "number": "Enter phone number",
+      "id": 5
+    },
+    {
       "name": "Sauli Makelainen",
       "number": "0400898226",
       "id": 6
+    },
+    {
+      "name": "Matti Rönkänen",
+      "number": "Enter phone number",
+      "id": 8
     }
   ]
 }

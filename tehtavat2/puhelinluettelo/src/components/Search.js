@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 const Search = ({contacts, visible ,setVisible}) => {
-    
+
     const handleFilter = (event) => {
         setFilter(event.target.value);
         setVisible(contacts.filter(contact =>contact.name.toLowerCase().includes(event.target.value.toLowerCase())));
