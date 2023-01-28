@@ -1,15 +1,26 @@
 import './App.css';
-import {useState} from 'react'
-import Numbers from './components/Numbers'
-import Form from './components/Form'
-import Search from './components/Search'
+import {useState, useEffect} from 'react';
+import Numbers from './components/Numbers';
+import Form from './components/Form';
+import Search from './components/Search';
+import axios from 'axios';
 
 
-const App = ({persons}) => {
-
-
-  const [contacts, setContacts] = useState(persons);
+const App = () => {
+  
+  const [contacts, setContacts] = useState([]);
   const [visible, setVisible] = useState(contacts);
+  
+  const hook = () => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => setContacts(response.data));
+  }
+  useEffect(hook, []);
+
+
+  console.log("app", contacts);
+
 
   return (
     <div>
